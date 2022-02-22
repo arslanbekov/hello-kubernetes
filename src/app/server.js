@@ -16,14 +16,14 @@ app.set('view engine', 'handlebars');
 // Configuration
 
 var port = process.env.PORT || 8080;
-var message = process.env.MESSAGE || 'Hello world!';
+var message = process.env.MESSAGE || 'Hello ANNA!';
 var renderPathPrefix = (
-  process.env.RENDER_PATH_PREFIX ? 
+  process.env.RENDER_PATH_PREFIX ?
     '/' + process.env.RENDER_PATH_PREFIX.replace(/^[\\/]+/, '').replace(/[\\/]+$/, '') :
     ''
 );
 var handlerPathPrefix = (
-  process.env.HANDLER_PATH_PREFIX ? 
+  process.env.HANDLER_PATH_PREFIX ?
     '/' + process.env.HANDLER_PATH_PREFIX.replace(/^[\\/]+/, '').replace(/[\\/]+$/, '') :
     ''
 );
@@ -64,6 +64,7 @@ app.get(handlerPathPrefix + '/', function (req, res) {
     res.render('home', {
       message: message,
       namespace: namespace,
+      randomString: Math.random().toString(36).replace(/[^a-z]+/g, ''),
       pod: podName,
       node: nodeName + ' (' + nodeOS + ')',
       container: containerImage + ' (' + containerImageArch + ')',
